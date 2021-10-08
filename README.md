@@ -30,6 +30,6 @@ d.感兴趣的可以研究下prompt,对这块感兴趣的可以参考下格局�
 
 e.更多技巧主要可以到天池或kaggle等数据科学平台或Github搜索，通过学习类似文本分类比赛的Top分享去进行学习和实践，以赛促学。
 
-关于PaddleNLP的使用：建议多看官方最新文档 PaddleNLP文档
+关于PaddleNLP的使用：建议多看官方最新文档：https://paddlenlp.readthedocs.io/zh/latest/get_started/quick_start.html
 
 PaddleNLP的github地址：https://github.com/PaddlePaddle/PaddleNLP 有问题的话可以在github上提issue，会有专人回答。
