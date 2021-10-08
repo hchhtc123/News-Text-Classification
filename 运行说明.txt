@@ -1,0 +1,52 @@
+首先需要下载新版本paddle和paddlenlp
+paddle下载可以根据官网文档进行安装：https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/conda/windows-conda.html
+
+下载最新版本的paddlenlp
+pip install --upgrade paddlenlp
+
+下载所需的其他依赖包：
+pip install pandas
+pip install numpy
+pip install matplotlib
+pip install tqdm
+
+下载数据集：https://aistudio.baidu.com/aistudio/datasetdetail/103654
+下载后解压至项目目录里
+
+运行run.cmd文件开始模型训练，注意模型训练要求显存32G，否则容易出现爆显存的情况
+
+代码执行顺序：
+# 进行第一次训练（使用多模型）
+python train1_robert.py
+python train1_nezha.py
+python train1_skep.py
+# 取多模型预测相同的部分作为伪标签数据
+python mergesim1.py
+
+# 融合第一次伪标签数据后进行微调训练
+python train2_robert.py
+python train2_nezha.py
+python train2_skep.py
+# 再次取多模型预测相同的部分作为伪标签数据
+python mergesim2.py
+
+# 融合第二次伪标签数据后进行微调训练
+python train3_robert.py
+python train3_nezha.py
+python train3_skep.py
+# 再次取多模型预测相同的部分作为伪标签数据
+python mergesim3.py
+
+# 融合第三次伪标签数据后进行微调训练
+python train4_robert.py
+python train4_nezha.py
+python train4_skep.py
+
+# 对最后一轮多模型的预测结果进行结果投票融合
+python read.py
+python kaggle_vote.py "./_*.csv" "./merge.csv" "weighted"
+python correct.py
+
+# 提交格式要求zip，故需要作为压缩包提交
+zip 'result.zip' 'result.txt'
+
